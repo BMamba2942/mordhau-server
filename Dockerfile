@@ -9,7 +9,9 @@ RUN apt-get update && \
 ADD steamcmd_linux.tar.gz /home/steam
 ADD update_mordhau.txt /home/steam
 ADD Game.ini /home/steam/mordhau/Mordhau/Saved/Config/LinuxServer/Game.ini
-RUN chown steam:root -R /home/steam
+RUN chown steam:root -R /home/steam && \
+    find /home/steam -type d -exec chmod ug+rwx {} \; && \
+    find /home/steam -type f -exec chmod ug+rw {} \;
 USER steam
 WORKDIR /home/steam
 RUN ./steamcmd.sh +login anonymous +runscript update_mordhau.txt

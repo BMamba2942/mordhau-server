@@ -16,7 +16,3 @@ USER steam
 WORKDIR /home/steam
 RUN ./steamcmd.sh +login anonymous +runscript update_mordhau.txt
 ENTRYPOINT ["./mordhau/MordhauServer.sh"]
-        
-
-
-
